@@ -1,0 +1,25 @@
+{
+  "name": "paperclip-adapter-openrouter",
+  "version": "0.1.0",
+  "description": "OpenRouter adapter for Paperclip — run agents on any OpenRouter model (DeepSeek, Claude, GPT, Llama, etc.) through a single API key.",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@paperclipai/adapter-utils": "^2026.824.1",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
