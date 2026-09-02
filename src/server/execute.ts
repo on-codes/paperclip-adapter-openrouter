@@ -2,17 +2,9 @@ import type {
   AdapterExecutionContext,
   AdapterExecutionResult,
 } from "@paperclipai/adapter-utils";
+import { asString, asNumber, readApiKey } from "./config.js";
 
 const OPENROUTER_CHAT_URL = "https://openrouter.ai/api/v1/chat/completions";
-
-function asString(v: unknown, fallback = ""): string {
-  return typeof v === "string" && v.trim().length > 0 ? v : fallback;
-}
-
-function asNumber(v: unknown, fallback: number): number {
-  const n = Number(v);
-  return Number.isFinite(n) ? n : fallback;
-}
 
 interface OpenRouterChatResponse {
   model?: string;
@@ -38,8 +30,7 @@ export async function execute(
 ): Promise<AdapterExecutionResult> {
   const { config, context, onLog, onMeta } = ctx;
 
-  const apiKey =
-    asString(config.apiKey) || asString(process.env.OPENROUTER_API_KEY);
+  const apiKey = readApiKey(config);
   const model = asString(config.model, "deepseek/deepseek-chat");
   const temperature = asNumber(config.temperature, 0.7);
   const maxTokens = asNumber(config.maxTokens, 4096);

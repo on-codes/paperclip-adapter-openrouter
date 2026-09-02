@@ -3,6 +3,7 @@ import type {
   AdapterEnvironmentTestResult,
   AdapterEnvironmentCheck,
 } from "@paperclipai/adapter-utils";
+import { readApiKey } from "./config.js";
 
 const OPENROUTER_KEY_URL = "https://openrouter.ai/api/v1/auth/key";
 
@@ -12,10 +13,7 @@ export async function testEnvironment(
   const checks: AdapterEnvironmentCheck[] = [];
   const config = ctx.config ?? {};
 
-  const apiKey =
-    (typeof config.apiKey === "string" && config.apiKey.trim()) ||
-    process.env.OPENROUTER_API_KEY ||
-    "";
+  const apiKey = readApiKey(config);
 
   if (!apiKey) {
     checks.push({
