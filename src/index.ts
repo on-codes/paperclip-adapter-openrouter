@@ -9,6 +9,7 @@
 export const type = "openrouter" as const;
 
 export const models = [
+  { id: "deepseek/deepseek-v4-flash-0731", label: "DeepSeek V4 Flash (0731)" },
   { id: "deepseek/deepseek-chat", label: "DeepSeek Chat" },
   { id: "deepseek/deepseek-r1", label: "DeepSeek R1 (reasoning)" },
   { id: "anthropic/claude-sonnet-4-6", label: "Claude Sonnet 4.6" },
